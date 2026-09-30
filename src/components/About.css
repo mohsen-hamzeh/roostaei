@@ -1,0 +1,126 @@
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+}
+
+.about__media {
+  isolation: isolate;
+  position: relative;
+  padding: 0 0 40px 30px;
+}
+
+.about__frame {
+  position: relative;
+  border-radius: calc(var(--radius) + 8px);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.about__frame img {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+
+.about__frame:hover img {
+  transform: scale(1.04);
+}
+
+/* offset brand-coloured block behind the image */
+.about__media::before {
+  content: '';
+  position: absolute;
+  inset: 30px 40px 0 0;
+  border-radius: calc(var(--radius) + 8px);
+  background: linear-gradient(135deg, var(--maroon), var(--navy));
+  z-index: -1;
+  transform: translate(-30px, 10px);
+  opacity: 0.9;
+}
+
+.about__badge {
+  position: absolute;
+  bottom: 0;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px 12px 22px;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
+  animation: about-float 5s ease-in-out infinite;
+}
+
+.about__badge b {
+  display: block;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.about__badge img {
+  width: 58px;
+  height: auto;
+}
+
+@keyframes about-float {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.about__body .section-title {
+  margin-bottom: 16px;
+}
+
+.about__text {
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 2.1;
+}
+
+.about__points {
+  list-style: none;
+  padding: 0;
+  margin: 26px 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+}
+
+.about__points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.about__points svg {
+  color: var(--secondary);
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__points {
+    grid-template-columns: 1fr;
+  }
+  .about__media {
+    padding: 0 0 40px 14px;
+  }
+  .about__media::before {
+    transform: translate(-14px, 10px);
+  }
+}
